@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HOPFINITY - Meme Token</title>
+  <title>HOPFINITY</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to bottom right, #FF0000, #FFBB00);
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top right, #ff0000, #ff8800);
       color: #222;
+      overflow-x: hidden;
+    }
+
+    h1, h2 {
+      font-family: 'Poppins', sans-serif;
     }
 
     .container {
@@ -18,46 +23,53 @@
       padding: 20px;
     }
 
+    header {
+      text-align: center;
+      padding-top: 30px;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: white;
+      font-weight: 800;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .button-group a {
+      background: #7d2aff;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
     .card {
       background: white;
       border-radius: 20px;
       padding: 20px;
       margin-bottom: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    h1, h2 {
-      color: #c00000;
-      margin-top: 0;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     }
 
     p {
       line-height: 1.6;
     }
 
-    .button-group {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-
-    .button-group a {
-      flex: 1 1 48%;
-      text-align: center;
-      background: #7d2aff;
-      color: white;
-      text-decoration: none;
-      padding: 14px;
-      border-radius: 12px;
-      font-weight: bold;
-    }
-
     .carousel {
-      display: flex;
       overflow: hidden;
       position: relative;
+      margin-top: 20px;
     }
 
     .carousel-track {
@@ -70,6 +82,7 @@
       height: auto;
       margin: 0 10px;
       border-radius: 12px;
+      cursor: pointer;
     }
 
     @keyframes scroll {
@@ -86,11 +99,7 @@
     .gallery img {
       width: 100%;
       border-radius: 12px;
-    }
-
-    .tokenomics p {
-      font-size: 16px;
-      margin-bottom: 10px;
+      cursor: pointer;
     }
 
     footer {
@@ -100,33 +109,62 @@
       color: #fff;
     }
 
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
     @media (max-width: 600px) {
-      .button-group a {
-        flex: 1 1 100%;
+      header h1 {
+        font-size: 1.8em;
       }
 
       .carousel img {
         width: 120px;
       }
+
+      .button-group {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .button-group a {
+        flex: 1 1 auto;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    
-    <!-- Buttons -->
-    <div class="button-group">
-      <a href="https://x.com/Hopfinity" target="_blank">Visit Twitter</a>
-      <a href="https://dexscreener.com" target="_blank">Check Dexscreener</a>
-    </div>
 
-    <!-- Welcome Section -->
+  <header>
+    <h1>Welcome to HOPFINITY</h1>
+    <div class="button-group">
+      <a href="https://x.com/Hopfinity" target="_blank">Twitter</a>
+      <a href="https://dexscreener.com" target="_blank">Dexscreener</a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Welcome -->
     <div class="card">
-      <h1>Welcome to HOPFINITY</h1>
       <p>Hey there! You just stumbled upon the most unstoppable rabbit in the meme coin jungle. HOPFINITY isn’t just another hop in the park – it’s a leap into a wild, fun, and decentralized future where the community leads the way.</p>
     </div>
 
-    <!-- Description -->
+    <!-- What is HOPFINITY -->
     <div class="card">
       <h2>What is HOPFINITY?</h2>
       <p>HOPFINITY is a meme coin that goes beyond jokes. Inspired by the boundless spirit of a brave rabbit, HOPFINITY combines the power of community, humor, and blockchain technology to create a fun, decentralized, and unstoppable ecosystem.</p>
@@ -134,19 +172,15 @@
       <!-- Carousel -->
       <div class="carousel">
         <div class="carousel-track">
-          <img src="1.jpg" alt="hop1"/>
-          <img src="2.jpg" alt="hop2"/>
-          <img src="3.jpg" alt="hop3"/>
-          <img src="4.jpg" alt="hop4"/>
-          <img src="5.jpg" alt="hop5"/>
-          <img src="6.jpg" alt="hop6"/>
-          <!-- Duplicate again to ensure infinite loop -->
-          <img src="1.jpg" alt="hop1-2"/>
-          <img src="2.jpg" alt="hop2-2"/>
-          <img src="3.jpg" alt="hop3-2"/>
-          <img src="4.jpg" alt="hop4-2"/>
-          <img src="5.jpg" alt="hop5-2"/>
-          <img src="6.jpg" alt="hop6-2"/>
+          <img src="1.jpg" onclick="openLightbox(this.src)">
+          <img src="2.jpg" onclick="openLightbox(this.src)">
+          <img src="3.jpg" onclick="openLightbox(this.src)">
+          <img src="4.jpg" onclick="openLightbox(this.src)">
+          <img src="5.jpg" onclick="openLightbox(this.src)">
+          <img src="6.jpg" onclick="openLightbox(this.src)">
+          <!-- Duplicate for loop effect -->
+          <img src="7.jpg" onclick="openLightbox(this.src)">
+          <img src="8.jpg" onclick="openLightbox(this.src)">
         </div>
       </div>
     </div>
@@ -155,28 +189,28 @@
     <div class="card">
       <h2>Gallery</h2>
       <div class="gallery">
-        <img src="1.jpg" alt="Gallery 1"/>
-        <img src="3.jpg" alt="Gallery 2"/>
-        <img src="5.jpg" alt="Gallery 3"/>
-        <img src="2.jpg" alt="Gallery 4"/>
+        <img src="1.jpg" onclick="openLightbox(this.src)">
+        <img src="3.jpg" onclick="openLightbox(this.src)">
+        <img src="5.jpg" onclick="openLightbox(this.src)">
+        <img src="4.jpg" onclick="openLightbox(this.src)">
       </div>
     </div>
 
     <!-- Tokenomics -->
-    <div class="card tokenomics">
+    <div class="card">
       <h2>Tokenomics</h2>
       <p><strong>Name:</strong> HOPFINITY</p>
       <p><strong>Ticker:</strong> HOP</p>
-      <p><strong>Contract Address:</strong> [YOUR_CA_HERE]</p>
+      <p><strong>Contract Address:</strong> To be Announced</p>
     </div>
 
-    <!-- Promo Hook -->
+    <!-- Hook -->
     <div class="card">
-      <h2>Ready to Jump In?</h2>
+      <h2>Jump Early, Jump Hard</h2>
       <p>This ain't your grandma’s bunny. HOP is fast, fearless, and full of flavor. Join early, ride the wave, and let the degen games begin. Zero limits. Just hops.</p>
     </div>
 
-    <!-- Closing -->
+    <!-- Outro -->
     <div class="card">
       <h2>Final Words</h2>
       <p>Whether you're here for the memes, the gains, or the vibes — we welcome you. HOPFINITY is not just a coin. It's a movement. Now go tell your frens.</p>
@@ -184,10 +218,25 @@
 
   </div>
 
-  <!-- Footer -->
   <footer>
     © 2025 HOPFINITY. All rights reserved.
   </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Lightbox"/>
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").style.display = "flex";
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+  </script>
+
 </body>
-  </html>
-  
+</html>
